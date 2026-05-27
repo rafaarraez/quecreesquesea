@@ -153,7 +153,7 @@ export default function Hero() {
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 exit={{ opacity: 0, y: -8, scale: 0.9 }}
                 transition={{ type: "spring", stiffness: 220, damping: 18 }}
-                className="glass absolute -top-10 z-20 max-w-[15rem] rounded-2xl px-4 py-2 text-sm font-medium text-cream"
+                className="absolute -top-12 left-1/2 z-30 mb-3 w-max max-w-[14rem] -translate-x-1/2 rounded-2xl border border-gold/40 bg-night-800 px-4 py-2.5 text-center text-sm font-semibold leading-snug text-cream shadow-[0_8px_30px_rgba(0,0,0,0.55)]"
               >
                 {eggMsg}
               </motion.div>
