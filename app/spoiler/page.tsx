@@ -34,7 +34,7 @@ export default function SpoilerPage() {
               Información ultra secreta
             </h1>
             <p className="mt-4 max-w-sm text-cream/75">
-              Encontraste la página prohibida. ¿Seguro que querés ver el spoiler
+              Encontraste la página prohibida. ¿Seguro que quieres ver el spoiler
               del bebé? 👀
             </p>
             <motion.button

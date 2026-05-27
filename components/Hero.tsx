@@ -16,7 +16,7 @@ const EGG_TAP_MESSAGES: EggMessage[] = [
   { at: 9, text: "¡Faltan unos días! Gracias por la compañía 💛" },
   {
     at: 12,
-    text: "¿Querés un avance de lo que seré? 👀",
+    text: "¿Quieres un avance de lo que seré? 👀",
     href: "/spoiler",
     cta: "Ver el spoiler 🤫",
   },
