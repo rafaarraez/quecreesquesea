@@ -190,7 +190,7 @@ export default function VoteForm() {
               {/* Nombre */}
               <label className="mb-4 block">
                 <span className="mb-2 block text-sm font-medium text-cream/80">
-                  ¿Cómo te llaman?
+                  ¿Cómo te llamas?
                 </span>
                 <input
                   type="text"
@@ -272,7 +272,7 @@ export default function VoteForm() {
                   rows={2}
                   maxLength={280}
                   disabled={phase !== "form"}
-                  placeholder="Escribí algo lindo…"
+                  placeholder="Deja aqui todos tus buenos deseos, predicciones o lo que quieras decirle al bebé 💛"
                   className="w-full resize-none rounded-2xl border border-white/10 bg-night-900/60 px-4 py-3 text-cream placeholder:text-cream/35 focus:border-gold/50"
                 />
               </label>
