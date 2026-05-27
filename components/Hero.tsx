@@ -11,7 +11,7 @@ const EGG_TAP_MESSAGES = [
   { at: 3, text: "¿Hola? Me haces cosquillas 🥚" },
   { at: 6, text: "Eh, tranqui… todavía no salgo 😅" },
   { at: 9, text: "¡Faltan unos días! Gracias por la compañía 💛" },
-  { at: 13, text: "Ok, ya sos oficialmente mi tío/a favorito/a 😂" },
+  { at: 13, text: "Ok, ya eres oficialmente mi tío/a favorito/a 😂" },
   { at: 18, text: "En serio… anda a votar 👉 ¡pero te quiero! 🌟" },
 ];
 
