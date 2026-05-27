@@ -1,10 +1,19 @@
 "use client";
 
-import { motion, useScroll, useTransform } from "framer-motion";
-import { Fragment, useRef } from "react";
+import { AnimatePresence, motion, useScroll, useTransform } from "framer-motion";
+import { Fragment, useRef, useState } from "react";
 import Egg from "./Egg";
 
 const TITLE = "Se Viene un Mandolese López";
+
+// 🥚 Easter egg: el huevo reacciona si lo tocás de más (tierno y bobo).
+const EGG_TAP_MESSAGES = [
+  { at: 3, text: "¿Hola? Me hacés cosquillas 🥚" },
+  { at: 6, text: "Eh, tranqui… todavía no salgo 😅" },
+  { at: 9, text: "¡Faltan unos días! Gracias por la compañía 💛" },
+  { at: 13, text: "Ok, ya sos oficialmente mi tío/a favorito/a 😂" },
+  { at: 18, text: "En serio… andá a votar 👉 ¡pero te quiero! 🌟" },
+];
 
 /** Animación escalonada para revelar el título letra por letra. */
 const container = {
@@ -35,6 +44,20 @@ export default function Hero() {
   const yMid = useTransform(scrollYProgress, [0, 1], [0, 240]);
   const yNear = useTransform(scrollYProgress, [0, 1], [0, 400]);
   const fade = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
+
+  // Easter egg de los toques al huevo.
+  const eggTaps = useRef(0);
+  const [eggMsg, setEggMsg] = useState<string | null>(null);
+  const [jiggle, setJiggle] = useState(0);
+
+  function handleEggTap() {
+    eggTaps.current += 1;
+    const n = eggTaps.current;
+    // Tomamos el último mensaje cuyo umbral ya alcanzamos.
+    const match = [...EGG_TAP_MESSAGES].reverse().find((m) => n >= m.at);
+    if (match) setEggMsg(match.text);
+    setJiggle((j) => j + 1); // fuerza un meneíto en cada toque
+  }
 
   return (
     <section
@@ -120,12 +143,39 @@ export default function Hero() {
             }}
             transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
           />
+
+          {/* 🥚 Globito del easter egg */}
+          <AnimatePresence>
+            {eggMsg && (
+              <motion.div
+                key={eggMsg}
+                initial={{ opacity: 0, y: 10, scale: 0.8 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, y: -8, scale: 0.9 }}
+                transition={{ type: "spring", stiffness: 220, damping: 18 }}
+                className="glass absolute -top-10 z-20 max-w-[15rem] rounded-2xl px-4 py-2 text-sm font-medium text-cream"
+              >
+                {eggMsg}
+              </motion.div>
+            )}
+          </AnimatePresence>
+
           <motion.div
             animate={{ scale: [1, 1.05, 1], rotate: [0, 1.5, -1.5, 0] }}
             transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
             className="relative"
           >
-            <Egg className="h-56 w-44 drop-shadow-[0_0_25px_rgba(243,213,136,0.4)] sm:h-72 sm:w-56" />
+            <motion.button
+              type="button"
+              onClick={handleEggTap}
+              aria-label="El huevo del secreto"
+              key={jiggle}
+              animate={{ rotate: [0, -6, 6, -3, 0] }}
+              transition={{ duration: 0.4 }}
+              className="cursor-pointer rounded-full"
+            >
+              <Egg className="h-56 w-44 drop-shadow-[0_0_25px_rgba(243,213,136,0.4)] sm:h-72 sm:w-56" />
+            </motion.button>
           </motion.div>
         </div>
 
@@ -136,7 +186,7 @@ export default function Hero() {
           transition={{ delay: 2, duration: 1 }}
           className="mt-10 max-w-md text-balance text-lg leading-relaxed text-cream/85 sm:text-xl"
         >
-          ¿Qué creés o esperás que sea? 💭
+          ¿Qué crees o esperas que sea? 💭
         </motion.p>
 
         {/* CTA suave */}

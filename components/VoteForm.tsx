@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import Egg from "./Egg";
 import Confetti from "./Confetti";
 import { createVote } from "@/lib/votes";
+import { getNameJoke } from "@/lib/easterEggs";
 import type { Gender } from "@/lib/types";
 
 type Phase = "form" | "trembling" | "burst" | "thanks" | "done";
@@ -127,6 +128,17 @@ export default function VoteForm() {
                 Tu amor ya rodea a este pequeño ser
               </p>
               <p className="mt-5 text-lg text-cream/75">Gracias, {name.trim()} ✨</p>
+              {/* 🥚 Easter egg: broma personalizada según el nombre */}
+              {getNameJoke(name) && (
+                <motion.p
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.6, duration: 0.6 }}
+                  className="mt-4 max-w-sm text-balance text-base font-medium text-gold"
+                >
+                  {getNameJoke(name)}
+                </motion.p>
+              )}
             </motion.div>
           </motion.div>
         )}

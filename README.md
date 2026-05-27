@@ -1,4 +1,4 @@
-# ¿Qué creés que será? — Se Viene un Mandolese López 💛
+# ¿Qué crees que será? — Se Viene un Mandolese López 💛
 
 Web app para la revelación de sexo del bebé: una experiencia mágica donde la
 familia deja su predicción (🌸 niña / 💙 niño) y un mensaje de amor, ve el
