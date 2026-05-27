@@ -8,11 +8,11 @@ const TITLE = "Se Viene un Mandolese López";
 
 // 🥚 Easter egg: el huevo reacciona si lo tocás de más (tierno y bobo).
 const EGG_TAP_MESSAGES = [
-  { at: 3, text: "¿Hola? Me hacés cosquillas 🥚" },
+  { at: 3, text: "¿Hola? Me haces cosquillas 🥚" },
   { at: 6, text: "Eh, tranqui… todavía no salgo 😅" },
   { at: 9, text: "¡Faltan unos días! Gracias por la compañía 💛" },
   { at: 13, text: "Ok, ya sos oficialmente mi tío/a favorito/a 😂" },
-  { at: 18, text: "En serio… andá a votar 👉 ¡pero te quiero! 🌟" },
+  { at: 18, text: "En serio… anda a votar 👉 ¡pero te quiero! 🌟" },
 ];
 
 /** Animación escalonada para revelar el título letra por letra. */
