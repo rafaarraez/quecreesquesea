@@ -156,6 +156,8 @@ export default function Hero() {
                 className="absolute -top-12 left-1/2 z-30 mb-3 w-max max-w-[14rem] -translate-x-1/2 rounded-2xl border border-gold/40 bg-night-800 px-4 py-2.5 text-center text-sm font-semibold leading-snug text-cream shadow-[0_8px_30px_rgba(0,0,0,0.55)]"
               >
                 {eggMsg}
+                {/* Flechita del globo apuntando al huevo */}
+                <span className="absolute left-1/2 top-full h-3 w-3 -translate-x-1/2 -translate-y-1/2 rotate-45 border-b border-r border-gold/40 bg-night-800" />
               </motion.div>
             )}
           </AnimatePresence>
