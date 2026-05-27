@@ -3,6 +3,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
 import { useVotes } from "@/lib/useVotes";
+import { useLikes } from "@/lib/useLikes";
 import type { Vote } from "@/lib/types";
 
 /** Fecha y hora del mensaje en horario de Caracas (UTC-4). */
@@ -23,7 +24,17 @@ function formatCaracas(iso: string): string {
   }
 }
 
-function EchoCard({ vote }: { vote: Vote }) {
+function EchoCard({
+  vote,
+  likeCount,
+  liked,
+  onLike,
+}: {
+  vote: Vote;
+  likeCount: number;
+  liked: boolean;
+  onLike: () => void;
+}) {
   const [pulse, setPulse] = useState(false);
   const isGirl = vote.gender === "girl";
 
@@ -76,15 +87,45 @@ function EchoCard({ vote }: { vote: Vote }) {
           “{vote.message}”
         </p>
       )}
-      <p className="relative mt-3 text-right text-xs text-cream/40">
-        {formatCaracas(vote.created_at)}
-      </p>
+      <div className="relative mt-3 flex items-center justify-between">
+        {/* Like anónimo: uno por dispositivo, recordado en el navegador */}
+        <button
+          type="button"
+          onClick={(e) => {
+            e.stopPropagation();
+            onLike();
+          }}
+          disabled={liked}
+          aria-label={liked ? "Ya te gusta este mensaje" : "Me gusta"}
+          className={`flex items-center gap-1.5 rounded-full px-2 py-1 text-sm transition-colors ${
+            liked
+              ? "text-rosa"
+              : "cursor-pointer text-cream/55 hover:text-rosa"
+          }`}
+        >
+          <motion.span
+            key={liked ? "on" : "off"}
+            animate={liked ? { scale: [1, 1.5, 1] } : {}}
+            transition={{ duration: 0.35 }}
+          >
+            {liked ? "❤️" : "🤍"}
+          </motion.span>
+          {likeCount > 0 && (
+            <span className="font-semibold tabular-nums">{likeCount}</span>
+          )}
+        </button>
+
+        <span className="text-xs text-cream/40">
+          {formatCaracas(vote.created_at)}
+        </span>
+      </div>
     </motion.li>
   );
 }
 
 export default function EchoesFeed() {
   const { votes, loading } = useVotes();
+  const { counts, liked, like } = useLikes();
   // Orden cronológico inverso (lo más nuevo primero).
   const ordered = [...votes].reverse();
 
@@ -110,7 +151,13 @@ export default function EchoesFeed() {
         <motion.ul layout className="flex flex-col gap-4">
           <AnimatePresence initial={false}>
             {ordered.map((vote) => (
-              <EchoCard key={vote.id} vote={vote} />
+              <EchoCard
+                key={vote.id}
+                vote={vote}
+                likeCount={counts[vote.id] ?? 0}
+                liked={liked.has(vote.id)}
+                onLike={() => like(vote.id)}
+              />
             ))}
           </AnimatePresence>
         </motion.ul>

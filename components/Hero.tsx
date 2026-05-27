@@ -2,17 +2,26 @@
 
 import { AnimatePresence, motion, useScroll, useTransform } from "framer-motion";
 import { Fragment, useRef, useState } from "react";
+import Link from "next/link";
 import Egg from "./Egg";
 
 const TITLE = "Se Viene un Mandolese López";
 
 // 🥚 Easter egg: el huevo reacciona si lo tocás de más (tierno y bobo).
-const EGG_TAP_MESSAGES = [
+type EggMessage = { at: number; text: string; href?: string; cta?: string };
+
+const EGG_TAP_MESSAGES: EggMessage[] = [
   { at: 3, text: "¿Hola? Me haces cosquillas 🥚" },
   { at: 6, text: "Eh, tranqui… todavía no salgo 😅" },
   { at: 9, text: "¡Faltan unos días! Gracias por la compañía 💛" },
-  { at: 13, text: "Ok, ya eres oficialmente mi tío/a favorito/a 😂" },
-  { at: 18, text: "En serio… anda a votar 👉 ¡pero te quiero! 🌟" },
+  {
+    at: 12,
+    text: "¿Querés un avance de lo que seré? 👀",
+    href: "/spoiler",
+    cta: "Ver el spoiler 🤫",
+  },
+  { at: 16, text: "Ok, ya eres oficialmente mi tío/a favorito/a 😂" },
+  { at: 21, text: "En serio… anda a votar 👉 ¡pero te quiero! 🌟" },
 ];
 
 /** Animación escalonada para revelar el título letra por letra. */
@@ -47,7 +56,7 @@ export default function Hero() {
 
   // Easter egg de los toques al huevo.
   const eggTaps = useRef(0);
-  const [eggMsg, setEggMsg] = useState<string | null>(null);
+  const [eggMsg, setEggMsg] = useState<EggMessage | null>(null);
   const [jiggle, setJiggle] = useState(0);
 
   function handleEggTap() {
@@ -55,7 +64,7 @@ export default function Hero() {
     const n = eggTaps.current;
     // Tomamos el último mensaje cuyo umbral ya alcanzamos.
     const match = [...EGG_TAP_MESSAGES].reverse().find((m) => n >= m.at);
-    if (match) setEggMsg(match.text);
+    if (match) setEggMsg(match);
     setJiggle((j) => j + 1); // fuerza un meneíto en cada toque
   }
 
@@ -148,14 +157,22 @@ export default function Hero() {
           <AnimatePresence>
             {eggMsg && (
               <motion.div
-                key={eggMsg}
+                key={eggMsg.text}
                 initial={{ opacity: 0, y: 10, scale: 0.8 }}
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 exit={{ opacity: 0, y: -8, scale: 0.9 }}
                 transition={{ type: "spring", stiffness: 220, damping: 18 }}
-                className="absolute -top-12 left-1/2 z-30 mb-3 w-max max-w-[14rem] -translate-x-1/2 rounded-2xl border border-gold/40 bg-night-800 px-4 py-2.5 text-center text-sm font-semibold leading-snug text-cream shadow-[0_8px_30px_rgba(0,0,0,0.55)]"
+                className="absolute -top-16 left-1/2 z-30 w-max max-w-[15rem] -translate-x-1/2 rounded-2xl border border-gold/40 bg-night-800 px-4 py-2.5 text-center text-sm font-semibold leading-snug text-cream shadow-[0_8px_30px_rgba(0,0,0,0.55)]"
               >
-                {eggMsg}
+                {eggMsg.text}
+                {eggMsg.href && (
+                  <Link
+                    href={eggMsg.href}
+                    className="mt-2 block rounded-full bg-gold/20 px-3 py-1 text-xs font-bold text-gold transition-colors hover:bg-gold/30"
+                  >
+                    {eggMsg.cta ?? "Ver más"}
+                  </Link>
+                )}
                 {/* Flechita del globo apuntando al huevo */}
                 <span className="absolute left-1/2 top-full h-3 w-3 -translate-x-1/2 -translate-y-1/2 rotate-45 border-b border-r border-gold/40 bg-night-800" />
               </motion.div>
