@@ -1,0 +1,42 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="32%" r="80%">
+      <stop offset="0%" stop-color="#211f55"/>
+      <stop offset="55%" stop-color="#0a0820"/>
+      <stop offset="100%" stop-color="#05030f"/>
+    </radialGradient>
+    <linearGradient id="girl" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f8cfe0"/>
+      <stop offset="100%" stop-color="#f4a6c4"/>
+    </linearGradient>
+    <linearGradient id="boy" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#c4e4fa"/>
+      <stop offset="100%" stop-color="#8ec9f0"/>
+    </linearGradient>
+    <filter id="glow" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="10" result="b"/>
+      <feMerge>
+        <feMergeNode in="b"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Fondo cielo nocturno -->
+  <rect width="512" height="512" rx="116" fill="url(#bg)"/>
+
+  <!-- Corazón: mitad niña / mitad niño -->
+  <g filter="url(#glow)">
+    <path d="M256 398 C 150 322, 96 256, 96 192 C 96 142, 134 108, 180 108 C 214 108, 240 128, 256 156 Z"
+          fill="url(#girl)"/>
+    <path d="M256 398 C 362 322, 416 256, 416 192 C 416 142, 378 108, 332 108 C 298 108, 272 128, 256 156 Z"
+          fill="url(#boy)"/>
+  </g>
+
+  <!-- Destello dorado -->
+  <g fill="#f3d588">
+    <path d="M386 120 L398 152 L430 164 L398 176 L386 208 L374 176 L342 164 L374 152 Z"/>
+    <circle cx="150" cy="220" r="7" opacity="0.85"/>
+    <circle cx="356" cy="300" r="6" opacity="0.7"/>
+  </g>
+</svg>

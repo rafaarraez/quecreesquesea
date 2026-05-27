@@ -1,0 +1,104 @@
+@import "tailwindcss";
+
+/* ─────────────────────────────────────────────────────────────
+   El Gran Secreto — Mandolese López
+   Paleta: cielo nocturno mágico
+   ───────────────────────────────────────────────────────────── */
+
+@theme {
+  /* Fondo: negro profundo → azul noche */
+  --color-night-950: #05030f;
+  --color-night-900: #0a0820;
+  --color-night-800: #11102e;
+  --color-night-700: #1b1a45;
+
+  /* Detalles pastel */
+  --color-cream: #fdf6e8;
+  --color-lila: #c9b6f5;
+  --color-rosa: #f6c6d8;
+  --color-celeste: #b8e0f6;
+  --color-azul: #8db4f0;
+  --color-gold: #f3d588;
+
+  /* Acentos de género */
+  --color-girl: #f4a6c4;
+  --color-girl-soft: #f8cfe0;
+  --color-boy: #8ec9f0;
+  --color-boy-soft: #c4e4fa;
+
+  --font-display: var(--font-baloo), system-ui, sans-serif;
+  --font-body: var(--font-nunito), system-ui, sans-serif;
+}
+
+:root {
+  --background: #05030f;
+  --foreground: #fdf6e8;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background:
+    radial-gradient(120% 80% at 50% -10%, #1b1a45 0%, #0a0820 45%, #05030f 100%);
+  background-attachment: fixed;
+  color: var(--foreground);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+/* Accesibilidad: focus visible elegante */
+*:focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+/* Scrollbar sutil */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #05030f;
+}
+::-webkit-scrollbar-thumb {
+  background: #2a2960;
+  border-radius: 999px;
+}
+
+/* ── Utilidades de brillo ── */
+@utility text-glow-gold {
+  text-shadow:
+    0 0 8px rgba(243, 213, 136, 0.55),
+    0 0 22px rgba(243, 213, 136, 0.35),
+    0 0 44px rgba(243, 213, 136, 0.2);
+}
+
+@utility text-glow-soft {
+  text-shadow: 0 0 14px rgba(201, 182, 245, 0.45);
+}
+
+/* Vidrio esmerilado para tarjetas */
+@utility glass {
+  background: rgba(255, 255, 255, 0.045);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+}
+
+/* Respeto a reduce-motion */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
