@@ -104,7 +104,7 @@ export default function Hero() {
           transition={{ delay: 1.4, duration: 0.8 }}
           className="font-display mt-4 text-base font-medium tracking-[0.15em] text-lila uppercase text-glow-soft sm:text-lg"
         >
-          Un nuevo miembro de la familia 🌿
+          El nuevo miembro de la familia 🌿
         </motion.p>
 
         {/* Huevo con respiración + halo */}
