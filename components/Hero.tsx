@@ -203,7 +203,7 @@ export default function Hero() {
           className="group mt-12 inline-flex flex-col items-center gap-1 text-cream/70 transition-colors hover:text-gold"
         >
           <span className="font-display text-base tracking-wide">
-            Dejá tu predicción
+            Deja tu predicción
           </span>
           <span className="text-2xl transition-transform group-hover:translate-y-1">
             ↓

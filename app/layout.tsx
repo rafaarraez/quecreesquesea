@@ -20,7 +20,7 @@ const nunito = Nunito({
 const SITE_URL = "https://quecreesquesea.vercel.app";
 const TITLE = "Se Viene un Mandolese López";
 const DESCRIPTION =
-  "El nuevo miembro de la familia está por llegar. ¿Qué crees que será? Dejá tu predicción y tu mensaje de amor 💛";
+  "El nuevo miembro de la familia está por llegar. ¿Qué crees que será? Deja tu predicción y tu mensaje de amor 💛";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),

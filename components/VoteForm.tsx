@@ -196,7 +196,7 @@ export default function VoteForm() {
               animate={phase === "trembling" ? { opacity: 0.6 } : {}}
             >
               <h2 className="font-display mb-4 text-center text-2xl font-bold text-cream sm:text-3xl">
-                Dejá tu predicción
+                Deja tu predicción
               </h2>
 
               {/* Nombre */}
