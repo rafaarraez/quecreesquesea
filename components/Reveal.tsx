@@ -97,7 +97,7 @@ export default function Reveal({ gender }: { gender: Gender }) {
             whileTap={{ scale: 0.97 }}
             className="font-display rounded-full border border-gold/40 bg-gold/10 px-10 py-5 text-xl font-bold text-gold text-glow-gold backdrop-blur"
           >
-            Revelar el secreto ✨
+            Conóceme✨💕
           </motion.button>
         )}
 
