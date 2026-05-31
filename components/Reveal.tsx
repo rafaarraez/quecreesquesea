@@ -147,7 +147,7 @@ export default function Reveal({ gender }: { gender: Gender }) {
                   textShadow: `0 0 24px ${c.color}cc`,
                 }}
               >
-                {c.word} al mundo, pequeñ{gender === "girl" ? "a" : "o"} Mandolese
+                {c.word} al mundo, pequeñ{gender === "girl" ? "a" : "o"} Atenea Mandolese
                 López! 🌿
               </h1>
             </motion.div>
